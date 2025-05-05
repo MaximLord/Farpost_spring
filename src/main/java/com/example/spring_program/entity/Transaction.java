@@ -2,15 +2,17 @@ package com.example.spring_program.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private Float operation; // Сумма операции
+    private BigDecimal operation; // Сумма операции
     private String description; // Описание операции
     private LocalDateTime dateOfExecution; // Дата выполнения
 
@@ -18,7 +20,7 @@ public class Transaction {
 
     }
 
-    public Transaction(Long id, Float operation, String description, LocalDateTime dateOfExecution) {
+    public Transaction(Long id, BigDecimal operation, String description, LocalDateTime dateOfExecution) {
         this.id = id;
         this.operation = operation;
         this.description = description;
@@ -33,11 +35,11 @@ public class Transaction {
         this.id = id;
     }
 
-    public Float getOperation() {
+    public BigDecimal getOperation() {
         return operation;
     }
 
-    public void setOperation(Float operation) {
+    public void setOperation(BigDecimal operation) {
         this.operation = operation;
     }
 

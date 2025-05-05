@@ -6,20 +6,21 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private float balance; // Баланс
+    private BigDecimal balance; // Баланс
     private LocalDateTime creationDate; // Дата создания
 
     public Account() {
 
     }
 
-    public Account(Long id, float balance, LocalDateTime creationDate) {
+    public Account(Long id, BigDecimal balance, LocalDateTime creationDate) {
         this.id = id;
         this.balance = balance;
         this.creationDate = creationDate;
@@ -33,11 +34,11 @@ public class Account {
         this.id = id;
     }
 
-    public float getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
