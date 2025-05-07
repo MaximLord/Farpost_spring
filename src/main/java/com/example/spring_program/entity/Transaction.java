@@ -13,7 +13,7 @@ public class Transaction {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private BigDecimal operation; // Сумма операции
-    private String description; // Описание операции
+    private String description; // Тип операции
     private LocalDateTime dateOfExecution; // Дата выполнения
 
     public Transaction() {
@@ -58,4 +58,5 @@ public class Transaction {
     public void setDateOfExecution(LocalDateTime dateOfExecution) {
         this.dateOfExecution = dateOfExecution;
     }
+
 }

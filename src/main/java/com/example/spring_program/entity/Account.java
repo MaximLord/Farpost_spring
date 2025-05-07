@@ -13,6 +13,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+    private String email;
     private BigDecimal balance; // Баланс
     private LocalDateTime creationDate; // Дата создания
 
@@ -20,8 +21,9 @@ public class Account {
 
     }
 
-    public Account(Long id, BigDecimal balance, LocalDateTime creationDate) {
+    public Account(Long id, String email, BigDecimal balance, LocalDateTime creationDate) {
         this.id = id;
+        this.email = email;
         this.balance = balance;
         this.creationDate = creationDate;
     }
@@ -32,6 +34,14 @@ public class Account {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String mail) {
+        this.email = mail;
     }
 
     public BigDecimal getBalance() {
