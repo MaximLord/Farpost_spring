@@ -1,14 +1,19 @@
 package com.example.spring_program.entity;
 
 import jakarta.persistence.*;
+import lombok.Setter;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
-
+@Table
+@Getter
+@Setter
 @Entity
 public class Transaction {
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
@@ -27,36 +32,15 @@ public class Transaction {
         this.dateOfExecution = dateOfExecution;
     }
 
-    public Long getId() {
-        return id;
+    public enum OperationType {
+        DEPOSIT, WITHDRAWAL // Внесение/Снятие
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Enumerated(EnumType.STRING)
+    private OperationType type;
 
-    public BigDecimal getOperation() {
-        return operation;
-    }
-
-    public void setOperation(BigDecimal operation) {
-        this.operation = operation;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getDateOfExecution() {
-        return dateOfExecution;
-    }
-
-    public void setDateOfExecution(LocalDateTime dateOfExecution) {
-        this.dateOfExecution = dateOfExecution;
-    }
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
 }

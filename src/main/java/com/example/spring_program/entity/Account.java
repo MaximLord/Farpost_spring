@@ -2,12 +2,20 @@ package com.example.spring_program.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+@Table
+@Getter
+@Setter
 @Entity
 public class Account {
     @Id
@@ -28,35 +36,7 @@ public class Account {
         this.creationDate = creationDate;
     }
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Transaction> operations;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String mail) {
-        this.email = mail;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
 }
